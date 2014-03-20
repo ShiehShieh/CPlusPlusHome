@@ -20,11 +20,6 @@ int main(int argc, char const *argv[]){
 	test += test1;
 	test.print();
 	std::cout << test(2, 2) << std::endl;
-	try{
-			throw MyErr("The size of two Matrix are different.\nPlease try again.");
-	}catch(MyErr& E){
-		std::cout << E.what() << std::endl;
-	}
 
 	return 0;
 }
