@@ -4,6 +4,6 @@
 *.vcxproj.filters
 *.c.dump
 *.csv
-debug/*
+database/Debug/*
 .DS_Store
 *.exe
