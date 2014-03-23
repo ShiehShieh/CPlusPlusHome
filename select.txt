@@ -1,0 +1,2 @@
+select {name,grade} from Student
+where name = bbb and adc = tt or name like ccc and adc like ee and grade = 70 or name = aaa and adc like ww order by name DES

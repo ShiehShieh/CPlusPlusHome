@@ -1,0 +1,1 @@
+update Student set grade = 80 where name = eee and ad = ee or grade = 90 and ad = qq and name = aaa or id = 55 and grade = 50 or id = 22 and grade = 80 and name = ddd

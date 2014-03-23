@@ -1,0 +1,9 @@
+*.[oa]
+*.txt.bak
+*.vcxproj
+*.vcxproj.filters
+*.c.dump
+*.csv
+debug/*
+.DS_Store
+*.exe

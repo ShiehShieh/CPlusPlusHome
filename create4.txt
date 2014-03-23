@@ -1,0 +1,10 @@
+CREATE TABLE data
+(
+    id      char(24) not null;
+    time    float(4) not null;
+    uid     float(4) not null;
+    ok      float(4) not null;
+    from    float(4) not null;
+    ip      char(16) not null;
+    ua      char(101) not null;
+)

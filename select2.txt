@@ -1,0 +1,2 @@
+select top 100 {name,grade} from Student1
+where name = bbb and ad = tt or name = ccc and ad = ee or name = aaa and ad = ww order by grade DESC
