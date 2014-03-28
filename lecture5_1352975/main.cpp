@@ -8,6 +8,7 @@
 int main(int argc, char const *argv[])
 {
 	BusinessTraveler b;
+	BusinessTraveler c = b;
 	TimeInherit T;
 	Cloneone one;
 	Clonetwo two;

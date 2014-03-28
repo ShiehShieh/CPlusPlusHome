@@ -14,12 +14,10 @@ public:
 	Player(std::string str1 = "guest", std::string str2 = "unknow", std::vector<std::string> vstr1 = v, std::vector<std::string> vstr2 = v, float f1 = 0, std::string str3 = "beginner"):
 	name(str1), login_time(str2), played_matches(vstr1), won_matches(vstr2), ratio(f1), rank(str3){}
 	~Player(){}
-	bool operator==(const Player &right)
-	{
+	bool operator==(const Player &right) const{
 		return this->login_time == right.login_time && this->name == right.name && this->played_matches == right.played_matches && this->rank == right.rank && this->ratio == right.ratio && this->won_matches == right.won_matches;
 	}
-	bool operator!=(const Player &right)
-	{
+	bool operator!=(const Player &right) const{
 		return !(*this == right);
 	}
 
@@ -35,7 +33,6 @@ private:
 
 class User_prof
 {
-	friend User_prof;
 	friend std::ostream& operator<<(std::ostream& os, User_prof& u);
 public:
 	User_prof(){}
@@ -49,15 +46,13 @@ public:
 	int vsize(){
 		return vPlayer.size();
 	}
-/*	bool operator==(const User_prof& u)
-	{
+	bool operator==(const User_prof& u) const{
 		return this->vPlayer == u.vPlayer;
 	}
-	bool operator!=(const User_prof& u)
-	{
+	bool operator!=(const User_prof& u) const{
 		return !(*this == u);
 	}
-*/
+
 private:
 	std::vector<Player> vPlayer;
 };
