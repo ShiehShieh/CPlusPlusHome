@@ -4,8 +4,7 @@
 #include "USER_PROF.h"
 #include "MATRIX.h"
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]){
 	std::array<float, 16> ar = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6};
 	Matrix M, M1(ar), M2(ar);
 
@@ -27,6 +26,9 @@ int main(int argc, char const *argv[])
 	u.login(p3);
 	u.login(p4);
 	u.login(p5);
+	std::cout << u << std::endl;
+	u.logout();
+	u.logout();
 	std::cout << u << std::endl;
 
 	return 0;
