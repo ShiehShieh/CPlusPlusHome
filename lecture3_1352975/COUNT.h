@@ -18,10 +18,10 @@ int count(){
 	std::string str;
 	std::map<std::string, int> wordtime;
 	std::set<std::string> exclusive;
-	std::ifstream hinfile("//Users//huangli//Documents//C++homework//3//article.txt");
-	std::ifstream hinfile2("//Users//huangli//Documents//C++homework//3//exclusive.txt");
-	std::ofstream houtfile1("//Users//huangli//Documents//C++homework//3//3_1_1out.txt");
-	std::ofstream houtfile2("//Users//huangli//Documents//C++homework//3//3_1_2out.txt");
+	std::ifstream hinfile("article.txt");
+	std::ifstream hinfile2("exclusive.txt");
+	std::ofstream houtfile1("3_1_1out.txt");
+	std::ofstream houtfile2("3_1_2out.txt");
 
 	while(hinfile2 >> str){
 		exclusive.insert(str);

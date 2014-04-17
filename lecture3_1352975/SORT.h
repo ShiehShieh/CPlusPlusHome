@@ -13,8 +13,8 @@ void mysort()
 {
 	std::string str;
 	std::vector<std::string> vs;
-	std::ifstream hinfile("//Users//huangli//Documents//C++homework//3//article.txt");
-	std::ofstream houtfile("//Users//huangli//Documents//C++homework//3//3_2out.txt");
+	std::ifstream hinfile("article.txt");
+	std::ofstream houtfile("3_2out.txt");
 
 	while(hinfile >> str)
 	{

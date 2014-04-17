@@ -8,8 +8,8 @@
 
 void evenandodd()
 {
-	std::ofstream houtfile1("//Users//huangli//Documents//C++homework//3//3_3_1out.txt");
-	std::ofstream houtfile2("//Users//huangli//Documents//C++homework//3//3_3_2out.txt");	
+	std::ofstream houtfile1("3_3_1out.txt");
+	std::ofstream houtfile2("3_3_2out.txt");	
 	std::istream_iterator<int> eof;
 	std::istream_iterator<int> itofis(std::cin);
 	std::ostream_iterator<int> itofout1(houtfile1, " ");
