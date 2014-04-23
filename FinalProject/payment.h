@@ -14,7 +14,7 @@
 class Payment
 {
 public:
-	Payment():{}
+	Payment(){}
 	void showList();
 	~Payment(){}
 

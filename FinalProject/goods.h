@@ -27,6 +27,9 @@ public:
 		allGoods.push_back(*this);
 	}
 	void print();
+	int returnCom(){
+		return commodity;
+	}
 	~Good(){}
 
 private:
