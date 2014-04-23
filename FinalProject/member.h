@@ -9,23 +9,57 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
 
+class Member;
+std::vector<Member> allMembers;
+
+/**
+ * represent all the Member in the store.
+ */
 class Member
 {
 public:
-	Member(int msn, std::string na, char gen, int pho, int level, std::string mp):
+	Member(std::ifstream &is);
+	Member(int msn, std::string na, char gen, std::string pho, int level, std::string mp):
 	memberShipNumber(msn), name(na), gender(gen), phone(pho), level(level), memberPoint(mp){}
-	void print()
+	void print();
 	~Member(){}
 
 private:
 	int memberShipNumber = 0;
 	std::string name;
 	char gender;
-	int phone;
+	std::string phone;
 	int level;
 	std::string memberPoint;
 };
+
+Member::Member(std::ifstream &is){
+	std::string strin, str;
+	while(is >> strin){
+		str += " " + strin;
+	}
+
+	/**
+	 * [inString store all the input data.]
+	 * @str [store the input data temporarily]
+	 */
+	std::istringstream inString(str);
+	int memberShipNumber;
+	std::string name;
+	char gender;
+	std::string phone;
+	int level;
+	std::string memberPoint;
+	while(inString){
+		inString >> memberShipNumber >> name >> gender >>
+		phone >> level >> memberPoint;
+		allMembers.push_back(Member(memberShipNumber, name, gender, phone, level, memberPoint));
+	}
+}
 
 void Member::print(){
 	std::cout << memberShipNumber << "\n" << name << "\n"
@@ -33,9 +67,9 @@ void Member::print(){
 	<< memberPoint << std::endl;
 }
 
-std::ostream& operator<<(std::ostream &os, Member& M) const{
+std::ostream& operator<<(std::ostream &os, Member& M){
 	M.print();
-	return os
+	return os;
 }
 
 #endif

@@ -9,26 +9,51 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <sstream>
+
+class ShoppingCard;
+std::vector<ShoppingCard> allShoppingCards;
 
 class ShoppingCard
 {
 public:
-	ShoppingCard(int i, int bal):id(i), balance(bal){}
+	ShoppingCard(std::ifstream &is);
+	ShoppingCard(std::string i, int bal):id(i), balance(bal){}
 	void print();
 	~ShoppingCard(){}
 
 private:
-	int id;
+	std::string id;
 	int balance;
 };
 
-void ShoppingCard::print(){
-	std::cout << id << "\n" << name << std::endl;
+ShoppingCard::ShoppingCard(std::ifstream& is){
+	std::string strin, str;
+	while(is >> strin){
+		str += " " + strin;
+	}
+
+	/**
+	 * [inString store all the input data.]
+	 * @str [store the input data temporarily]
+	 */
+	std::istringstream inString(str);
+	std::string id;
+	int balance;
+	while(inString){
+		inString >> id >> balance;
+		allShoppingCards.push_back(ShoppingCard(id, balance));
+	}
 }
 
-std::ostream& operator<<(std::ostream &os, ShoppingCard& M) const{
+void ShoppingCard::print(){
+	std::cout << id << "\n" << balance << std::endl;
+}
+
+std::ostream& operator<<(std::ostream &os, ShoppingCard& M){
 	M.print();
-	return os
+	return os;
 }
 
 #endif

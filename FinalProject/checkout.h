@@ -23,7 +23,7 @@ private:
 };
 
 int Checkout::enter(){
-	return 5
+	return 5;
 }
 
 #endif
