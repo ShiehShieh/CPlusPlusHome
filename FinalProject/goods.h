@@ -23,12 +23,26 @@ class Good
 public:
 	Good(std::ifstream& is);
 	Good(int comm, std::string na, std::string ori, int ben):
-	commodity(comm), name(na), origin(ori), benchmark(ben){
-		allGoods.push_back(*this);
-	}
+	commodity(comm), name(na), origin(ori), benchmark(ben), count(1){}
 	void print();
+	Good(const Good& other){
+		*this = other;
+	}
+	Good& operator=(const Good& other);
 	int returnCom(){
 		return commodity;
+	}
+/*	std::string returnName(){
+		return name;
+	}
+	std::string returnOrigin(){
+		return origin;
+	}
+*/	int returnBenchmark(){
+		return benchmark;
+	}
+	void setCount(int counts){
+		count = counts;
 	}
 	~Good(){}
 
@@ -37,9 +51,10 @@ private:
 	std::string name;
 	std::string origin;
 	int benchmark;
+	int count;
 };
 
-Good::Good(std::ifstream& is){
+Good::Good(std::ifstream& is):count(1){
 	std::string strin, str;
 	while(is >> strin){
 		str += " " + strin;
@@ -60,9 +75,20 @@ Good::Good(std::ifstream& is){
 	}
 }
 
+Good& Good::operator=(const Good& other){
+	this->commodity = other.commodity;
+	this->name = other.name;
+	this->origin = other.origin;
+	this->benchmark = other.benchmark;
+	this->count = other.count;
+	return *this;
+}
+
 void Good::print(){
-	std::cout << commodity << "\n" << name << "\n"
-	<< origin << "\n" << benchmark << std::endl;
+	std::cout << "commodity code: " << commodity << "\n"
+	<< "name: " << name << "\n"
+	<< "origin: " << origin << "\n"
+	<< "benchmark: " << benchmark << std::endl;
 }
 
 std::ostream& operator<<(std::ostream &os, Good& M){

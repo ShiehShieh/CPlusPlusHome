@@ -13,6 +13,7 @@
 #include "shoppingcard.h"
 #include "checkout.h"
 #include "payment.h"
+#include "mod.h"
 
 /**
  * [main description]
@@ -22,6 +23,9 @@
  */
 int main(int argc, char const *argv[]){
 	dataInput();
-	Checkout c;
+//	Checkout checkout;
+//	checkout.run();
+	Mod mod;
+	mod.run();
 	return 0;
 }

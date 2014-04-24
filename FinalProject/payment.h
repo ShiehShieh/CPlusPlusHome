@@ -15,11 +15,15 @@ class Payment
 {
 public:
 	Payment(){}
+	void run(std::string command);
 	void showList();
 	~Payment(){}
 
 private:
 };
+
+void Payment::run(std::string command){
+}
 
 void Payment::showList(){
 }

@@ -11,34 +11,80 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include "payment.h"
 #include "goods.h"
+#include "shoppingcard.h"
+#include "member.h"
 
 class Checkout
 {
+	static std::vector<Good> goodList;
 public:
-	Checkout(): number(1){
-		getline(std::cin, str);
-		std::istringstream iss(str);
-		iss >> commodity;
-		if(iss >> number);
-		find();
-	}
-	void find();
+	Checkout():number(1){}
+	int run();
 	~Checkout(){}
 
 private:
-	std::string str;
 	int commodity;
 	int number;
+	void find();
 };
 
+std::vector<Good> Checkout::goodList;
+
+int Checkout::run(){
+	//getline();
+	std::string str, str1, str2;
+	std::cout << "Checkout module.\n"
+	<< "command/commodity : " << std::flush;
+	std::cin >> str1;
+	if (str1 == "quit"){
+		return 5;
+	}
+	std::cout << "number : (pass 'p' to skip)" << std::flush;
+	std::cin >> str2;
+	if (str2 != "p"){
+		str = str1 + " " + str2;
+	}else{
+		str = str1 + " 1";
+	}
+	while(str1 != "quit"){
+		std::istringstream iss(str);
+		iss >> commodity;
+		if(iss >> number){}
+		find();
+		std::cout << "Checkout module.\n"
+		<< "command/commodity : " << std::flush;
+		std::cin >> str1;
+		if (str1 == "quit"){
+			return 5;
+		}
+		std::cout << "number : (pass 'p' to skip)" << std::flush;
+		std::cin >> str2;
+		if (str2 != "p"){
+			str = str1 + " " + str2;
+		}else{
+			str = str1 + " 1";
+		}
+	}
+	return 0;
+}
+
+/**
+ * Find the correct purchase.
+ */
 void Checkout::find(){
 	for (std::vector<Good>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)
 	{
 		if (i->returnCom() == commodity)
 		{
+			int total = i->returnBenchmark() * number;
 			i->print();
+			std::cout << "total: " << total << std::endl;
+			goodList.push_back(Good(*i));
+			goodList.back().setCount(number);
+			std::cout << "count: " << number << std::endl;
 		}
 	}
 }
