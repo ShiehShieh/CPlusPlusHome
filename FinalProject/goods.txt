@@ -14,7 +14,11 @@ China
 orange
 China
 20
-2
+4
+fruit
+China
+25
+3
 apple
 China
 50

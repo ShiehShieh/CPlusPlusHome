@@ -35,24 +35,29 @@ void Mod::help(){
 }
 
 void Mod::run(){
+	int status = 0;
 	std::string command;
-	std::cout << "command : " << std::flush;
+	std::cout << "-----system-----\n"
+	<< "command : " << std::flush;
 	std::cin >> command;
 	while(command != "quit"){
 		try{
 			if(command == "checkout"){
-				checkout.run();
+				status = checkout.run();
 			}else if(command == "payment"){
-				std::cin >> command;
-				payment.run(command);
+				payment.run();
 			}else{
 				throw Myerror("command does exit, please try again.");
+			}
+			if (status == 5){
+				payment.run();
 			}
 		}catch(Myerror error){
 			std::cout << error.what() << std::endl;
 			help();
 		}
-		std::cout << "command : " << std::flush;
+		std::cout << "-----system-----\n"
+		<< "command : " << std::flush;
 		std::cin >> command;
 
 	}

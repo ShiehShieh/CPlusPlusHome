@@ -25,7 +25,13 @@ public:
 	Member(std::ifstream &is);
 	Member(int msn, std::string na, char gen, std::string pho, int level, std::string mp):
 	memberShipNumber(msn), name(na), gender(gen), phone(pho), level(level), memberPoint(mp){}
-	void print();
+	void print(std::ostream &os);
+	int returnNumber(){
+		return memberShipNumber;
+	}
+	int returnLevel(){
+		return level;
+	}
 	~Member(){}
 
 private:
@@ -61,14 +67,14 @@ Member::Member(std::ifstream &is){
 	}
 }
 
-void Member::print(){
-	std::cout << memberShipNumber << "\n" << name << "\n"
+void Member::print(std::ostream &os = std::cout){
+	os << memberShipNumber << "\n" << name << "\n"
 	<< gender<< "\n" << phone << "\n" << level << "\n"
 	<< memberPoint << std::endl;
 }
 
 std::ostream& operator<<(std::ostream &os, Member& M){
-	M.print();
+	M.print(os);
 	return os;
 }
 

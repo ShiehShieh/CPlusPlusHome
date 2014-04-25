@@ -12,14 +12,13 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "payment.h"
 #include "goods.h"
-#include "shoppingcard.h"
-#include "member.h"
+#include "membership.h"
 
 class Checkout
 {
-	static std::vector<Good> goodList;
+	friend class Payment;
+	static std::vector<Goods> goodsList;
 public:
 	Checkout():number(1){}
 	int run();
@@ -28,15 +27,18 @@ public:
 private:
 	int commodity;
 	int number;
+	Membership membership;
 	void find();
 };
 
-std::vector<Good> Checkout::goodList;
+//std::vector<Goods> goodsList;
+std::vector<Goods> Checkout::goodsList;
 
 int Checkout::run(){
+	membership.run();
 	//getline();
 	std::string str, str1, str2;
-	std::cout << "Checkout module.\n"
+	std::cout << "-----Checkout module.-----\n"
 	<< "command/commodity : " << std::flush;
 	std::cin >> str1;
 	if (str1 == "quit"){
@@ -54,7 +56,7 @@ int Checkout::run(){
 		iss >> commodity;
 		if(iss >> number){}
 		find();
-		std::cout << "Checkout module.\n"
+		std::cout << "-----Checkout module.-----\n"
 		<< "command/commodity : " << std::flush;
 		std::cin >> str1;
 		if (str1 == "quit"){
@@ -68,22 +70,22 @@ int Checkout::run(){
 			str = str1 + " 1";
 		}
 	}
-	return 0;
+	return 5;
 }
 
 /**
  * Find the correct purchase.
  */
 void Checkout::find(){
-	for (std::vector<Good>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)
+	for (std::vector<Goods>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)
 	{
 		if (i->returnCom() == commodity)
 		{
-			int total = i->returnBenchmark() * number;
+			int total = i->returnBenchmark() * number * i->returnDiscount();
 			i->print();
 			std::cout << "total: " << total << std::endl;
-			goodList.push_back(Good(*i));
-			goodList.back().setCount(number);
+			goodsList.push_back(Goods(*i));
+			goodsList.back().setCount(number);
 			std::cout << "count: " << number << std::endl;
 		}
 	}
@@ -93,16 +95,16 @@ void Checkout::find(){
  * [dataInput input all the data from particular file which are in the 'sample' doucment.]
  */
 void dataInput(){
-	std::ifstream fisGood("//Users//huangli//Documents//C++homework//FinalProject//goods.txt");
+	std::ifstream fisGoods("//Users//huangli//Documents//C++homework//FinalProject//goods.txt");
 	std::ifstream fisMember("//Users//huangli//Documents//C++homework//FinalProject//members.txt");
 	std::ifstream fisShoppingCard("//Users//huangli//Documents//C++homework//FinalProject//shoppingcards.txt");
-	Good good(fisGood);
+	Goods goods(fisGoods);
 //	std::cout << allGoods[0] << allGoods[1] << std::endl;
 	Member member(fisMember);
 //	std::cout << allMembers[0] << allMembers[1] << std::endl;
 	ShoppingCard shoppingCard(fisShoppingCard);
 //	std::cout << allShoppingCards[0] << allShoppingCards[1] << std::endl;
-	fisGood.close();
+	fisGoods.close();
 	fisMember.close();
 	fisShoppingCard.close();
 }
