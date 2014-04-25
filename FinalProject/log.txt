@@ -1,0 +1,2 @@
+bug:
+1.entry "quit" into cash-command.

@@ -31,7 +31,7 @@ public:
 	/**
 	 * initialize the class by mutiple argument.
 	 */
-	Member(int msn, std::string na, char gen, std::string pho, int level, std::string mp):
+	Member(int msn, std::string na, char gen, std::string pho, int level, int mp):
 	memberShipNumber(msn), name(na), gender(gen), phone(pho), level(level), memberPoint(mp){}
 
 	/**
@@ -57,6 +57,25 @@ public:
 	}
 
 	/**
+	 * reset the level.
+	 * @param levels [description]
+	 */
+	void setLevel(int levels){
+		level = levels;
+	}
+
+	double returnPoint(){
+		return memberPoint;
+	}
+
+	/**
+	 * reset the member point
+	 */
+	void addPoint(double point){
+		memberPoint += point;
+	}
+
+	/**
 	 * destructor.
 	 */
 	~Member(){}
@@ -67,7 +86,7 @@ private:
 	char gender;
 	std::string phone;
 	int level;
-	std::string memberPoint;
+	double memberPoint;
 };
 
 Member::Member(std::ifstream &is){
@@ -90,7 +109,7 @@ Member::Member(std::ifstream &is){
 	char gender;
 	std::string phone;
 	int level;
-	std::string memberPoint;
+	int memberPoint;
 
 	/**
 	 * construct the Member, and push all the object into the vector.

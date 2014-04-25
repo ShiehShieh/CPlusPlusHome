@@ -183,6 +183,13 @@ void Payment::run(Membership M){
 	 * discounted price.
 	 */
 	bill = M.returnBill(status);
+
+	/**
+	 * upgrade the member point.
+	 */
+	M.addPoint();
+	M.upgrade();
+
 	std::cout << "-----Payment module-----\n"
 	<< "command : " << std::flush;
 	myStringStream << "-----Payment module-----\n"
@@ -216,6 +223,9 @@ void Payment::run(Membership M){
 	 * clean the shopping list.
 	 */
 	cleanTheShoppingList();
+
+	return;
+
 }
 
 template<typename T>
@@ -225,12 +235,9 @@ void Payment::update(std::vector<T> all, std::string file){
 	<< "-----you data will be changed, please select a mod : \n"
 	<< "NEW : creat a new file .\nATE : append to the old file .\n"
 	<< "command : " << std::flush;
+
 	try{
 		std::cin >> command;
-//		std::locale::global(std::locale("en_US.utf8"));
-//		std::wcout.imbue(std::locale());
-//		auto& f = std::use_facet<std::ctype<wchar_t>>(std::locale());
-//		f.tolower(&command[0], &co[0] + str.size());
 		if(command == "new"){
 			std::ofstream newFile("//Users//huangli//Documents//C++homework//FinalProject//" + file, std::ios_base::out);
 			for (auto i = all.begin(); i != all.end(); ++i){
@@ -247,14 +254,18 @@ void Payment::update(std::vector<T> all, std::string file){
 	}catch(Myerror error){
 		std::cout << error.what() << std::endl;
 	}
+
 	return;
+
 }
 
 /**
  * clean the shopping list before last transaction.
  */
 void Payment::cleanTheShoppingList(){
+
 	Checkout::goodsList.clear();
+
 }
 
 /**

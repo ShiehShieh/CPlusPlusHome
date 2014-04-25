@@ -21,11 +21,22 @@ public:
 		}
 		return status;
 	}
+
+	/**
+	 * return the member size.
+	 * @return [description]
+	 */
+	int returnMemberSize(){
+		return memberSize;
+	}
+
 	~Membership(){}
 
 private:
 	int level;
 	double bill;
+	int memberSize = 0;
+
 	int discount();
 	void addPoint();
 	void upgrade();
