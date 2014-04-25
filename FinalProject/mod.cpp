@@ -11,6 +11,9 @@
 #include "myerror.h"
 #include "mod.h"
 
+/**
+ * output the manual when receive an illege input.
+ */
 void Mod::help(){
 	std::cout << "----------------------------------------\n"
 	<< "command 		function 		\n"
@@ -19,13 +22,25 @@ void Mod::help(){
 	<< "----------------------------------------" << std::endl;
 }
 
+/**
+ * manage the system interfact.
+ */
 void Mod::run(){
 	int status = 0;
 	std::string command;
+
 	std::cout << "-----system-----\n"
 	<< "command : " << std::flush;
 	std::cin >> command;
+
+	/**
+	 * entry "quit" to stop the service.
+	 */
 	while(command != "quit"){
+
+		/**
+		 * rise a exception when the system receive a illege input.
+		 */
 		try{
 			if(command == "checkout"){
 				status = checkout.run();
@@ -41,9 +56,11 @@ void Mod::run(){
 			std::cout << error.what() << std::endl;
 			help();
 		}
+
 		std::cout << "-----system-----\n"
 		<< "command : " << std::flush;
 		std::cin >> command;
 
 	}
+
 }

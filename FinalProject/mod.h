@@ -4,6 +4,9 @@
 #include "checkout.h"
 #include "payment.h"
 
+/**
+ * the definition of class Mod.
+ */
 class Mod
 {
 public:

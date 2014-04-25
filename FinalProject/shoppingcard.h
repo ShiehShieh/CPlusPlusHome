@@ -12,6 +12,9 @@
 #include <vector>
 #include <sstream>
 
+/**
+ * forward declaration
+ */
 class ShoppingCard;
 std::vector<ShoppingCard> allShoppingCards;
 
@@ -21,9 +24,19 @@ public:
 	ShoppingCard(std::ifstream &is);
 	ShoppingCard(std::string i, int bal):id(i), balance(bal){}
 	void print(std::ostream &os);
+
+	/**
+	 * return the id.
+	 * @return [description]
+	 */
 	std::string returnId(){
 		return id;
 	}
+
+	/**
+	 * return the remaining balance.
+	 * @return [description]
+	 */
 	double& returnBal(){
 		return balance;
 	}
@@ -34,6 +47,9 @@ private:
 	double balance;
 };
 
+/**
+ * initialize the shoppingcard by a ifstream.
+ */
 ShoppingCard::ShoppingCard(std::ifstream& is){
 	std::string strin, str;
 	while(is >> strin){
@@ -54,10 +70,17 @@ ShoppingCard::ShoppingCard(std::ifstream& is){
 	allShoppingCards.pop_back();
 }
 
+/**
+ * output the shoppingcard to the command list.
+ * @param os [description]
+ */
 void ShoppingCard::print(std::ostream &os = std::cout){
 	os << id << "\n" << balance << std::endl;
 }
 
+/**
+ * work with 'print()'.
+ */
 std::ostream& operator<<(std::ostream &os, ShoppingCard& M){
 	M.print(os);
 	return os;

@@ -22,16 +22,43 @@ std::vector<Member> allMembers;
 class Member
 {
 public:
+
+	/**
+	 * initialize the class by a ifstream.
+	 */
 	Member(std::ifstream &is);
+
+	/**
+	 * initialize the class by mutiple argument.
+	 */
 	Member(int msn, std::string na, char gen, std::string pho, int level, std::string mp):
 	memberShipNumber(msn), name(na), gender(gen), phone(pho), level(level), memberPoint(mp){}
+
+	/**
+	 * output the Member to the command line.
+	 * @param os a ostream with a default value -- std::cout.
+	 */
 	void print(std::ostream &os);
+
+	/**
+	 * return data member--number.
+	 * @return [description]
+	 */
 	int returnNumber(){
 		return memberShipNumber;
 	}
+
+	/**
+	 * return data member--level.
+	 * @return [description]
+	 */
 	int returnLevel(){
 		return level;
 	}
+
+	/**
+	 * destructor.
+	 */
 	~Member(){}
 
 private:
@@ -45,12 +72,16 @@ private:
 
 Member::Member(std::ifstream &is){
 	std::string strin, str;
+
+	/**
+	 * read file here.
+	 */
 	while(is >> strin){
 		str += " " + strin;
 	}
 
 	/**
-	 * [inString store all the input data.]
+	 * [inString will be used to store all the input data.]
 	 * @str [store the input data temporarily]
 	 */
 	std::istringstream inString(str);
@@ -60,6 +91,10 @@ Member::Member(std::ifstream &is){
 	std::string phone;
 	int level;
 	std::string memberPoint;
+
+	/**
+	 * construct the Member, and push all the object into the vector.
+	 */
 	while(inString){
 		inString >> memberShipNumber >> name >> gender >>
 		phone >> level >> memberPoint;
@@ -67,6 +102,10 @@ Member::Member(std::ifstream &is){
 	}
 }
 
+/**
+ * output the Member to the command line.
+ * @param os [description]
+ */
 void Member::print(std::ostream &os = std::cout){
 	os << "memberShipNumber : " << memberShipNumber << "\n"
 	<< "name : " << name << "\n"
@@ -76,6 +115,9 @@ void Member::print(std::ostream &os = std::cout){
 	<< "memberPoint : " << memberPoint << std::endl;
 }
 
+/**
+ * output the Member with 'print()'.
+ */
 std::ostream& operator<<(std::ostream &os, Member& M){
 	M.print(os);
 	return os;

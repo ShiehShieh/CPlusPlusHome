@@ -1,22 +1,39 @@
 -----SHOPPING LIST-----
-commodity code: 100
-name: rice
+commodity code: 1
+name: cookiet
 origin: China
-benchmark: 1000
+benchmark: 25
+count : 1
+commodity code: 2
+name: orange
+origin: China
+benchmark: 20
+count : 2
+commodity code: 3
+name: apple
+origin: China
+benchmark: 50
+count : 3
+commodity code: 4
+name: fruit
+origin: China
+benchmark: 25
 count : 4
+commodity code: 5
+name: coffee
+origin: China
+benchmark: 100
+count : 5
 -----PAYMENT INFORMATION-----
 -----Payment module-----
 command : -----Payment approach : cash-----
-The number of cash : -----The money needed : 0
+The number of cash : -----The money needed : 33.5
 -----Payment module-----
-command : -----Payment module-----
-command : -----Payment approach : cash-----
-The number of cash : -----The money needed : 0
+command : -----Payment approach : bank card-----
+The number of bank card : Comsumer's name : The amount of consumption : The money needed : 0.5
 -----Payment module-----
-command : -----Payment module-----
-command : -----Payment approach : cash-----
-The number of cash : -----The money needed : 0
------Payment module-----
-command : -----Transaction has already been done.
+command : -----Payment approach : shopping gift card-----
+The id of the shopping gift card : -----the amout of consumption : -----The money remained in the shopping card : 499.5
+-----The money needed : 0
 -----Payment module-----
 command : 

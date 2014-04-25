@@ -16,6 +16,10 @@
 //std::vector<Goods> goodsList;
 std::vector<Goods> Checkout::goodsList;
 
+/**
+ * manage the checkout module.
+ * @return [description]
+ */
 int Checkout::run(){
 	membership.run();
 	//getline();
@@ -33,6 +37,10 @@ int Checkout::run(){
 	}else{
 		str = str1 + " 1";
 	}
+
+	/**
+	 * entry 'quit' to jump out of this loop.
+	 */
 	while(true){
 		std::istringstream iss(str);
 		iss >> commodity;

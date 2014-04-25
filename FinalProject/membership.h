@@ -7,6 +7,13 @@ class Membership
 public:
 	Membership(){}
 	void run();
+
+	/**
+	 * return bill
+	 * @param  status received from 'discount()', which can determin
+	 *                the output of this function.
+	 * @return        [description]
+	 */
 	double returnBill(double status){
 		if(status == 1){
 			deduction();

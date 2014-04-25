@@ -15,6 +15,7 @@
 #include "checkout.h"
 #include "shoppingcard.h"
 #include "membership.h"
+#include "payment.h"
 #include "myerror.h"
 
 //extern std::vector<Goods> goodsList;
@@ -29,29 +30,49 @@ void Payment::deduction(){
 }
 */
 
+/**
+ * payment approach : cash.
+ */
 void Payment::cash(){
 	std::cout << bill << std::endl;
 	int money = 0;
+
+	/**
+	 * return to mod when bill is reduced to zero.
+	 */
 	if(bill == 0){
 		std::cout << "-----Transaction has already been done."
 		<< std::endl;
 		myStringStream << "-----Transaction has already been done." << std::endl;
 		return;
 	}
+
 	std::cout << "-----Payment approach : cash-----\n"
 	<< "The number of cash : " << std::flush;
 	myStringStream << "-----Payment approach : cash-----\n"
 	<< "The number of cash : " << std::flush;
 	std::cin >> money;
+
+	/**
+	 * make the deduction here.
+	 */
 	bill -= money;
+
 	std::cout << "-----The money needed : "<< bill << std::endl;
 	myStringStream << "-----The money needed : "<< bill << std::endl;
 }
 
+/**
+ * payment approach ; bank card.
+ */
 void Payment::bankCard(){
 	std::string bankCardNumber;
 	std::string name;
 	double amount = 0;
+
+	/**
+	 * return to mod when bill is reduced to zero.
+	 */
 	if(bill == 0){
 		std::cout << "-----Transaction has already been done."
 		<< std::endl;
@@ -59,6 +80,7 @@ void Payment::bankCard(){
 		<< std::endl;
 		return;
 	}
+
 	std::cout << "-----Payment approach : bank card-----\n"
 	<< "The number of bank card : " << std::flush;
 	myStringStream << "-----Payment approach : bank card-----\n"
@@ -75,6 +97,7 @@ void Payment::bankCard(){
 	 * Make the deduction here.
 	 */
 	bill -= amount;
+
 	std::cout << "The money needed : "<< bill << std::endl;
 	myStringStream << "The money needed : "<< bill << std::endl;
 }
@@ -83,6 +106,10 @@ void Payment::shoppingCard(){
 	std::string id;
 	double amount = 0;
 	int mark = 0;
+
+	/**
+	 * return to mod when bill is reduced to zero.
+	 */
 	if(bill == 0){
 		std::cout << "-----Transaction has already been done."
 		<< std::endl;
@@ -90,6 +117,7 @@ void Payment::shoppingCard(){
 		<< std::endl;
 		return;
 	}
+
 	std::cout << "-----Payment approach : shopping gift card-----\n"
 	<< "The id of the shopping gift card : " << std::flush;
 	myStringStream << "-----Payment approach : shopping gift card-----\n"
@@ -102,6 +130,10 @@ void Payment::shoppingCard(){
 	{
 		i->print();
  	}*/
+	/**
+	 * find the shopping card and comfirm the
+	 * balance before settle the account.
+	 */
 	for (std::vector<ShoppingCard>::iterator i = allShoppingCards.begin(); i != allShoppingCards.end(); ++i){
 		try{
 			if(i->returnId() == id){
@@ -127,19 +159,39 @@ void Payment::shoppingCard(){
 			<< error.what() << std::endl;
 		}
 	}
+
+	/**
+	 * update the shoppingcards.txt
+	 */
 	update(allShoppingCards, "newshoppingcardfile.txt");
 }
 
+/**
+ * manage the payment module.
+ * @param M [description]
+ */
 void Payment::run(Membership M){
 	double status = 0;
 	std::string command;
+
+	/**
+	 * status = gross price.
+	 */
 	status = M.discount();
+
+	/**
+	 * discounted price.
+	 */
 	bill = M.returnBill(status);
 	std::cout << "-----Payment module-----\n"
 	<< "command : " << std::flush;
 	myStringStream << "-----Payment module-----\n"
 	<< "command : " << std::flush;
 	std::cin >> command;
+
+	/**
+	 * select the payment approach here.
+	 */
 	while(command != "quit"){
 		if(command == "cash"){
 			cash();
@@ -154,7 +206,15 @@ void Payment::run(Membership M){
 		<< "command : " << std::flush;
 		std::cin >> command;
 	}
+
+	/**
+	 * output the shopping list to the command list.
+	 */
 	showList();
+
+	/**
+	 * clean the shopping list.
+	 */
 	cleanTheShoppingList();
 }
 
@@ -190,10 +250,16 @@ void Payment::update(std::vector<T> all, std::string file){
 	return;
 }
 
+/**
+ * clean the shopping list before last transaction.
+ */
 void Payment::cleanTheShoppingList(){
 	Checkout::goodsList.clear();
 }
 
+/**
+ * output the shopping list to the command list.
+ */
 void Payment::showList(){
 	std::ofstream of("//Users//huangli//Documents//C++homework//FinalProject//paymentOutput.txt", std::ofstream::out);
 	of << "-----SHOPPING LIST-----" << std::endl;
