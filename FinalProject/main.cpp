@@ -14,6 +14,13 @@
 #include "checkout.h"
 #include "payment.h"
 #include "mod.h"
+/**
+ * Temporarily.
+ */
+#include "membership.cpp"
+#include "checkout.cpp"
+#include "mod.cpp"
+#include "payment.cpp"
 
 /**
  * [main description]

@@ -68,9 +68,12 @@ Member::Member(std::ifstream &is){
 }
 
 void Member::print(std::ostream &os = std::cout){
-	os << memberShipNumber << "\n" << name << "\n"
-	<< gender<< "\n" << phone << "\n" << level << "\n"
-	<< memberPoint << std::endl;
+	os << "memberShipNumber : " << memberShipNumber << "\n"
+	<< "name : " << name << "\n"
+	<< "gender : " << gender<< "\n"
+	<< "phone : " << phone << "\n"
+	<< "level : " << level << "\n"
+	<< "memberPoint : " << memberPoint << std::endl;
 }
 
 std::ostream& operator<<(std::ostream &os, Member& M){

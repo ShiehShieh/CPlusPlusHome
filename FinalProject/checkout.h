@@ -1,23 +1,17 @@
-/**
- * student number	: 1352975
- * name				: 谢志杰Xie zhijie
- *file name			: checkout.h
- *description		: include the definition of checkout, which is used to
- *					  manage the checkout mode.
- */
 #ifndef CHECKOUT
 #define CHECKOUT
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <vector>
+#include <fstream>
 #include "goods.h"
+#include "member.h"
 #include "membership.h"
+#include "shoppingcard.h"
 
 class Checkout
 {
+	friend class Mod;
 	friend class Payment;
+	friend class Membership;
 	static std::vector<Goods> goodsList;
 public:
 	Checkout():number(1){}
@@ -30,66 +24,6 @@ private:
 	Membership membership;
 	void find();
 };
-
-//std::vector<Goods> goodsList;
-std::vector<Goods> Checkout::goodsList;
-
-int Checkout::run(){
-	membership.run();
-	//getline();
-	std::string str, str1, str2;
-	std::cout << "-----Checkout module.-----\n"
-	<< "command/commodity : " << std::flush;
-	std::cin >> str1;
-	if (str1 == "quit"){
-		return 5;
-	}
-	std::cout << "number : (pass 'p' to skip)" << std::flush;
-	std::cin >> str2;
-	if (str2 != "p"){
-		str = str1 + " " + str2;
-	}else{
-		str = str1 + " 1";
-	}
-	while(str1 != "quit"){
-		std::istringstream iss(str);
-		iss >> commodity;
-		if(iss >> number){}
-		find();
-		std::cout << "-----Checkout module.-----\n"
-		<< "command/commodity : " << std::flush;
-		std::cin >> str1;
-		if (str1 == "quit"){
-			return 5;
-		}
-		std::cout << "number : (pass 'p' to skip)" << std::flush;
-		std::cin >> str2;
-		if (str2 != "p"){
-			str = str1 + " " + str2;
-		}else{
-			str = str1 + " 1";
-		}
-	}
-	return 5;
-}
-
-/**
- * Find the correct purchase.
- */
-void Checkout::find(){
-	for (std::vector<Goods>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)
-	{
-		if (i->returnCom() == commodity)
-		{
-			int total = i->returnBenchmark() * number * i->returnDiscount();
-			i->print();
-			std::cout << "total: " << total << std::endl;
-			goodsList.push_back(Goods(*i));
-			goodsList.back().setCount(number);
-			std::cout << "count: " << number << std::endl;
-		}
-	}
-}
 
 /**
  * [dataInput input all the data from particular file which are in the 'sample' doucment.]

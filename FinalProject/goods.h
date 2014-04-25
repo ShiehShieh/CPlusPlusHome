@@ -47,7 +47,7 @@ public:
 	double returnDiscount(){
 		return discount;
 	}
-	void setDiscount(int discounts){
+	void setDiscount(double discounts){
 		discount = discounts;
 	}
 	void setCount(int counts){
