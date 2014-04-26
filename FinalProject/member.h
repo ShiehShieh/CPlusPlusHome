@@ -38,7 +38,7 @@ public:
 	 * output the Member to the command line.
 	 * @param os a ostream with a default value -- std::cout.
 	 */
-	void print(std::ostream &os);
+	void print(std::ostream &os = std::cout) const;
 
 	/**
 	 * return data member--number.
@@ -89,55 +89,10 @@ private:
 	double memberPoint;
 };
 
-Member::Member(std::ifstream &is){
-	std::string strin, str;
-
-	/**
-	 * read file here.
-	 */
-	while(is >> strin){
-		str += " " + strin;
-	}
-
-	/**
-	 * [inString will be used to store all the input data.]
-	 * @str [store the input data temporarily]
-	 */
-	std::istringstream inString(str);
-	int memberShipNumber;
-	std::string name;
-	char gender;
-	std::string phone;
-	int level;
-	int memberPoint;
-
-	/**
-	 * construct the Member, and push all the object into the vector.
-	 */
-	while(inString){
-		inString >> memberShipNumber >> name >> gender >>
-		phone >> level >> memberPoint;
-		allMembers.push_back(Member(memberShipNumber, name, gender, phone, level, memberPoint));
-	}
-}
-
-/**
- * output the Member to the command line.
- * @param os [description]
- */
-void Member::print(std::ostream &os = std::cout){
-	os << "memberShipNumber : " << memberShipNumber << "\n"
-	<< "name : " << name << "\n"
-	<< "gender : " << gender<< "\n"
-	<< "phone : " << phone << "\n"
-	<< "level : " << level << "\n"
-	<< "memberPoint : " << memberPoint << std::endl;
-}
-
 /**
  * output the Member with 'print()'.
  */
-std::ostream& operator<<(std::ostream &os, Member& M){
+std::ostream& operator<<(std::ostream &os, const Member& M){
 	M.print(os);
 	return os;
 }

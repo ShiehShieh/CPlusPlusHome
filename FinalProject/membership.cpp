@@ -27,10 +27,19 @@ void Membership::run(){
 	int number;
 	bill = 0;
 
-	std::cout << "-----MEMBERSHIP MODULE-----\n"
+	/**
+	 * the user interface.
+	 */
+	std::cout << "\n-----MEMBERSHIP MODULE-----\n"
 	<< "command : " << std::flush;
 	std::cin >> command;
 	if(command == "quit"){
+
+		/**
+		 * treat as a non-member.
+		 */
+		level = 2;
+
 		return;
 	}
 	std::cout << "Please enter your member number : " << std::flush;
@@ -44,7 +53,9 @@ void Membership::run(){
 					memberSize = i - allMembers.begin();
 					level = i->returnLevel();
 					i->print();
+
 					return;
+
 				}
 				if(i == allMembers.end() - 1 && mark != 1){
 					throw Myerror("-----Illegal Number.");
@@ -54,20 +65,31 @@ void Membership::run(){
 				<< error.what() << "Please try again." << std::endl;
 			}
 		}
+
+		/**
+		 * the user interface.
+		 */
 		std::cout << "-----MEMBERSHIP MODULE-----\n"
 		<< "command : " << std::flush;
 		std::cin >> command;
+
 		if(command == "quit"){
 			return;
 		}
+
 		std::cout << "Please enter your member number : " << std::flush;
 		std::cin >> number;
 	}
+
 	return;
+
 }
 
-int Membership::discount(){
+double Membership::discount(){
 	switch(level){
+		/**
+		 * gold
+		 */
 		case 5:{
 			for (std::vector<Goods>::iterator i = Checkout::goodsList.begin(); i != Checkout::goodsList.end(); ++i){
 				double returnBenchmark = i->returnBenchmark();
@@ -83,6 +105,9 @@ int Membership::discount(){
 			return 1;
 
 		}break;
+		/**
+		 * silver
+		 */
 		case 4:{
 
 			deduction();
@@ -98,6 +123,10 @@ int Membership::discount(){
 			return bill;
 
 		}break;
+
+		/**
+		 * regular
+		 */
 		case 3:{
 			deduction();
 
@@ -116,6 +145,9 @@ int Membership::discount(){
 
 		}break;
 
+		/**
+		 * non-member
+		 */
 		case 2:{
 			deduction();
 
@@ -135,6 +167,9 @@ void Membership::addPoint(){
 	double point = 0;
 	auto pMember = allMembers.begin() + memberSize;
 
+	/**
+	 * the user interface.
+	 */
 	std::cout << "-----member point added." << std::endl;
 
 	switch(level){

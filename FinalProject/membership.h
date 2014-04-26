@@ -1,6 +1,9 @@
 #ifndef MEMBERSHIP
 #define MEMBERSHIP
 
+#include <vector>
+#include "member.h"
+
 class Membership
 {
 	friend class Payment;
@@ -26,8 +29,12 @@ public:
 	 * return the member size.
 	 * @return [description]
 	 */
-	int returnMemberSize(){
+	std::vector<Member>::difference_type returnMemberSize(){
 		return memberSize;
+	}
+
+	void displayTheMember(){
+		(*(allMembers.begin() + memberSize)).print();
 	}
 
 	~Membership(){}
@@ -35,9 +42,9 @@ public:
 private:
 	int level;
 	double bill;
-	int memberSize = 0;
+	std::vector<Member>::difference_type memberSize = 0;
 
-	int discount();
+	double discount();
 	void addPoint();
 	void upgrade();
 	void deduction();

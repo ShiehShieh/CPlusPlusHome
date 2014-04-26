@@ -14,9 +14,13 @@
 #include "checkout.h"
 #include "payment.h"
 #include "mod.h"
+
 /**
  * Temporarily.
  */
+#include "goods.cpp"
+#include "member.cpp"
+#include "shoppingcard.cpp"
 #include "membership.cpp"
 #include "checkout.cpp"
 #include "mod.cpp"
@@ -29,10 +33,18 @@
  * @return      [description]
  */
 int main(int argc, char const *argv[]){
+
+	/**
+	 * data input here.
+	 */
 	dataInput();
-//	Checkout checkout;
-//	checkout.run();
+
+	/**
+	 * service begin here.
+	 */
 	Mod mod;
 	mod.run();
+
 	return 0;
+
 }

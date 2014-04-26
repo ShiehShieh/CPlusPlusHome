@@ -20,7 +20,7 @@
 
 //extern std::vector<Goods> goodsList;
 
-std::ostringstream myStringStream("-----PAYMENT INFORMATION-----\n", std::ios_base::ate);
+std::ostringstream myStringStream("\n-----PAYMENT INFORMATION-----\n", std::ios_base::ate);
 
 /*
 void Payment::deduction(){
@@ -33,23 +33,29 @@ void Payment::deduction(){
 /**
  * payment approach : cash.
  */
-void Payment::cash(){
-	std::cout << bill << std::endl;
+bool Payment::cash(){
 	int money = 0;
 
 	/**
 	 * return to mod when bill is reduced to zero.
 	 */
+	std::cout << "The momey needed to pay : "
+	<< bill << std::endl;
 	if(bill == 0){
 		std::cout << "-----Transaction has already been done."
 		<< std::endl;
 		myStringStream << "-----Transaction has already been done." << std::endl;
-		return;
+
+		return true;
+
 	}
 
-	std::cout << "-----Payment approach : cash-----\n"
+	/**
+	 * the user interface.
+	 */
+	std::cout << "\n-----Payment approach : cash-----\n"
 	<< "The number of cash : " << std::flush;
-	myStringStream << "-----Payment approach : cash-----\n"
+	myStringStream << "\n-----Payment approach : cash-----\n"
 	<< "The number of cash : " << std::flush;
 	std::cin >> money;
 
@@ -60,12 +66,15 @@ void Payment::cash(){
 
 	std::cout << "-----The money needed : "<< bill << std::endl;
 	myStringStream << "-----The money needed : "<< bill << std::endl;
+
+	return false;
+
 }
 
 /**
  * payment approach ; bank card.
  */
-void Payment::bankCard(){
+bool Payment::bankCard(){
 	std::string bankCardNumber;
 	std::string name;
 	double amount = 0;
@@ -78,12 +87,17 @@ void Payment::bankCard(){
 		<< std::endl;
 		myStringStream << "-----Transaction has already been done."
 		<< std::endl;
-		return;
+
+		return true;
+
 	}
 
-	std::cout << "-----Payment approach : bank card-----\n"
+	/**
+	 * The user interface.
+	 */
+	std::cout << "\n-----Payment approach : bank card-----\n"
 	<< "The number of bank card : " << std::flush;
-	myStringStream << "-----Payment approach : bank card-----\n"
+	myStringStream << "\n-----Payment approach : bank card-----\n"
 	<< "The number of bank card : " << std::flush;
 	std::cin >> bankCardNumber;
 	std::cout << "Comsumer's name : " << std::flush;
@@ -100,9 +114,12 @@ void Payment::bankCard(){
 
 	std::cout << "The money needed : "<< bill << std::endl;
 	myStringStream << "The money needed : "<< bill << std::endl;
+
+	return false;
+
 }
 
-void Payment::shoppingCard(){
+bool Payment::shoppingCard(){
 	std::string id;
 	double amount = 0;
 	int mark = 0;
@@ -115,12 +132,17 @@ void Payment::shoppingCard(){
 		<< std::endl;
 		myStringStream << "-----Transaction has already been done."
 		<< std::endl;
-		return;
+
+		return true;
+
 	}
 
-	std::cout << "-----Payment approach : shopping gift card-----\n"
+	/**
+	 * The user interface.
+	 */
+	std::cout << "\n-----Payment approach : shopping gift card-----\n"
 	<< "The id of the shopping gift card : " << std::flush;
-	myStringStream << "-----Payment approach : shopping gift card-----\n"
+	myStringStream << "\n-----Payment approach : shopping gift card-----\n"
 	<< "The id of the shopping gift card : " << std::flush;
 	std::cin >> id;
 	std::cout << "-----the amout of consumption : " << std::flush;
@@ -141,10 +163,22 @@ void Payment::shoppingCard(){
 				if(i->returnBal() > amount){
 					i->returnBal() -= amount;
 					bill -= amount;
-					std::cout << "-----The money remained in the shopping card : "<< i->returnBal() << std::endl;
-					std::cout << "-----The money needed : "<< bill << std::endl;
-					myStringStream << "-----The money remained in the shopping card : "<< i->returnBal() << std::endl;
+
+					/**
+					 * The user interface.
+					 * And the information about remaining bill.
+					 */
+					std::cout << "-----The money remained in the shopping card : "
+					<< i->returnBal() << std::endl;
+
+					std::cout << "-----The money needed : "
+					<< bill << std::endl;
+
+					myStringStream << "-----The money remained in the shopping card : "
+					<< i->returnBal() << std::endl;
+
 					myStringStream << "-----The money needed : "<< bill << std::endl;
+
 				}else{
 					throw Myerror("The balance is not enough.");
 				}
@@ -153,9 +187,9 @@ void Payment::shoppingCard(){
 				throw Myerror("-----Illegal id.");
 			}
 		}catch(Myerror error){
-			std::cout << "-----Payment error handler-----\n"
+			std::cout << "\n-----Payment error handler-----\n"
 			<< error.what() << std::endl;
-			myStringStream << "-----Payment error handler-----\n"
+			myStringStream << "\n-----Payment error handler-----\n"
 			<< error.what() << std::endl;
 		}
 	}
@@ -164,6 +198,9 @@ void Payment::shoppingCard(){
 	 * update the shoppingcards.txt
 	 */
 	update(allShoppingCards, "newshoppingcardfile.txt");
+
+	return false;
+
 }
 
 /**
@@ -172,6 +209,7 @@ void Payment::shoppingCard(){
  */
 void Payment::run(Membership M){
 	double status = 0;
+	bool isDone = false;
 	std::string command;
 
 	/**
@@ -185,14 +223,11 @@ void Payment::run(Membership M){
 	bill = M.returnBill(status);
 
 	/**
-	 * upgrade the member point.
+	 * The user interface.
 	 */
-	M.addPoint();
-	M.upgrade();
-
-	std::cout << "-----Payment module-----\n"
+	std::cout << "\n-----Payment module-----\n"
 	<< "command : " << std::flush;
-	myStringStream << "-----Payment module-----\n"
+	myStringStream << "\n-----Payment module-----\n"
 	<< "command : " << std::flush;
 	std::cin >> command;
 
@@ -201,15 +236,38 @@ void Payment::run(Membership M){
 	 */
 	while(command != "quit"){
 		if(command == "cash"){
-			cash();
+
+			/**
+			 * payment approach : cash.
+			 */
+			isDone = cash();
 		}else if(command == "bank"){
-			bankCard();
+
+			/**
+			 * payment approach : bank card.
+		 	*/
+			isDone = bankCard();
 		}else if(command == "shop"){
-			shoppingCard();
+
+			/**
+			 * payment approach : shopping gift card.
+			 */
+			isDone = shoppingCard();
 		}
-		std::cout << "-----Payment module-----\n"
+
+		/**
+		 * quit the module when the transaction is done.
+		 */
+		if(isDone){
+			break;
+		}
+
+		/**
+		 * The user interface.
+		 */
+		std::cout << "\n-----Payment module-----\n"
 		<< "command : " << std::flush;
-		myStringStream << "-----Payment module-----\n"
+		myStringStream << "\n-----Payment module-----\n"
 		<< "command : " << std::flush;
 		std::cin >> command;
 	}
@@ -218,6 +276,28 @@ void Payment::run(Membership M){
 	 * output the shopping list to the command list.
 	 */
 	showList();
+
+	/**
+	 * upgrade the member point.
+	 */
+	M.addPoint();
+
+	/**
+	 * upgrade the member 's level.
+	 */
+	M.upgrade();
+
+	/**
+	 * display the current Member to confirm the upgrade.
+	 */
+	M.displayTheMember();
+
+	/**
+	 * update the member data.
+	 * use 'new' command to creat a a new file,
+	 * use 'old' command to override the old file.
+	 */
+	update(allMembers, "newMemberdata.txt");
 
 	/**
 	 * clean the shopping list.
@@ -231,11 +311,14 @@ void Payment::run(Membership M){
 template<typename T>
 void Payment::update(std::vector<T> all, std::string file){
 	std::string command;
-	std::cout << "-----UPDATE CHECK MODULE-----\n"
+	std::cout << "\n-----UPDATE CHECK MODULE-----\n"
 	<< "-----you data will be changed, please select a mod : \n"
 	<< "NEW : creat a new file .\nATE : append to the old file .\n"
 	<< "command : " << std::flush;
 
+	/**
+	 * select the update method.
+	 */
 	try{
 		std::cin >> command;
 		if(command == "new"){
@@ -272,8 +355,15 @@ void Payment::cleanTheShoppingList(){
  * output the shopping list to the command list.
  */
 void Payment::showList(){
+
+	/**
+	 * display the payment infomation and shopping list to the screen
+	 * and output them into an output file simultaneously.
+	 * @param  i [description]
+	 * @return   [description]
+	 */
 	std::ofstream of("//Users//huangli//Documents//C++homework//FinalProject//paymentOutput.txt", std::ofstream::out);
-	of << "-----SHOPPING LIST-----" << std::endl;
+	of << "\n-----SHOPPING LIST-----" << std::endl;
 	for (std::vector<Goods>::iterator i = Checkout::goodsList.begin(); i != Checkout::goodsList.end(); ++i){
 		of << *i << std::flush;
 		std::cout << *i << std::flush;

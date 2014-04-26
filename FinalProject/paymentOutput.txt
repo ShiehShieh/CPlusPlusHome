@@ -1,17 +1,18 @@
+
 -----SHOPPING LIST-----
 commodity code: 100
 name: rice
 origin: China
 benchmark: 1000
 count : 100
-commodity code: 5
-name: coffee
-origin: China
-benchmark: 100
-count : 5
+
 -----PAYMENT INFORMATION-----
------Payment module-----
-command : -----Payment approach : cash-----
-The number of cash : -----The money needed : 0
+
 -----Payment module-----
 command : 
+-----Payment approach : cash-----
+The number of cash : -----The money needed : 0
+
+-----Payment module-----
+command : -----Transaction has already been done.
+

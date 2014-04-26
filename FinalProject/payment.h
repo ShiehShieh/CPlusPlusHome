@@ -18,9 +18,9 @@ private:
 	Membership membership;
 	template<typename T> void update(std::vector<T> all, std::string file);
 	//void deduction();
-	void cash();
-	void bankCard();
-	void shoppingCard();
+	bool cash();
+	bool bankCard();
+	bool shoppingCard();
 	void cleanTheShoppingList();
 	std::string info;
 };

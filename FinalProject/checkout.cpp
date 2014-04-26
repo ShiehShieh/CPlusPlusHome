@@ -23,6 +23,10 @@ std::vector<Goods> Checkout::goodsList;
 int Checkout::run(){
 	membership.run();
 	//getline();
+	
+	/**
+	 * the user interface.
+	 */
 	std::string str, str1, str2;
 	std::cout << "-----Checkout module.-----\n"
 	<< "command/commodity : " << std::flush;
@@ -45,7 +49,15 @@ int Checkout::run(){
 		std::istringstream iss(str);
 		iss >> commodity;
 		if(iss >> number){}
+
+		/**
+		 * find the particular goods.
+		 */
 		find();
+
+		/**
+		 * the user interface.
+		 */
 		std::cout << "-----Checkout module.-----\n"
 		<< "command/commodity : " << std::flush;
 		std::cin >> str1;

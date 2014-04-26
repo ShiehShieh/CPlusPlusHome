@@ -23,7 +23,7 @@ class ShoppingCard
 public:
 	ShoppingCard(std::ifstream &is);
 	ShoppingCard(std::string i, int bal):id(i), balance(bal){}
-	void print(std::ostream &os);
+	void print(std::ostream &os = std::cout) const;
 
 	/**
 	 * return the id.
@@ -48,40 +48,9 @@ private:
 };
 
 /**
- * initialize the shoppingcard by a ifstream.
- */
-ShoppingCard::ShoppingCard(std::ifstream& is){
-	std::string strin, str;
-	while(is >> strin){
-		str += " " + strin;
-	}
-
-	/**
-	 * [inString store all the input data.]
-	 * @str [store the input data temporarily]
-	 */
-	std::istringstream inString(str);
-	std::string id;
-	double balance;
-	while(inString){
-		inString >> id >> balance;
-		allShoppingCards.push_back(ShoppingCard(id, balance));
-	}
-	allShoppingCards.pop_back();
-}
-
-/**
- * output the shoppingcard to the command list.
- * @param os [description]
- */
-void ShoppingCard::print(std::ostream &os = std::cout){
-	os << id << "\n" << balance << std::endl;
-}
-
-/**
  * work with 'print()'.
  */
-std::ostream& operator<<(std::ostream &os, ShoppingCard& M){
+std::ostream& operator<<(std::ostream &os, const ShoppingCard& M){
 	M.print(os);
 	return os;
 }
