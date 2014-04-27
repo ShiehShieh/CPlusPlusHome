@@ -33,6 +33,9 @@ public:
 		return memberSize;
 	}
 
+	/**
+	 * show the membet information to checkout the update.
+	 */
 	void displayTheMember(){
 		(*(allMembers.begin() + memberSize)).print();
 	}

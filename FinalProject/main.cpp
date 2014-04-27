@@ -14,6 +14,7 @@
 #include "checkout.h"
 #include "payment.h"
 #include "mod.h"
+//#include "interface.h"
 
 /**
  * Temporarily.
@@ -25,6 +26,7 @@
 #include "checkout.cpp"
 #include "mod.cpp"
 #include "payment.cpp"
+//#include "interface.cpp"
 
 /**
  * [main description]

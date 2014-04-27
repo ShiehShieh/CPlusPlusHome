@@ -22,7 +22,9 @@ private:
 	int commodity;
 	int number;
 	Membership membership;
+
 	void find();
+	int interface(std::string &str, std::string &str1, std::string &str2, int status);
 };
 
 /**

@@ -312,7 +312,7 @@ template<typename T>
 void Payment::update(std::vector<T> all, std::string file){
 	std::string command;
 	std::cout << "\n-----UPDATE CHECK MODULE-----\n"
-	<< "-----you data will be changed, please select a mod : \n"
+	<< "-----Your data will be changed, please select a mod : \n"
 	<< "NEW : creat a new file .\nATE : append to the old file .\n"
 	<< "command : " << std::flush;
 
