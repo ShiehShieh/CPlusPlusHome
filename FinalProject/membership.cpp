@@ -46,24 +46,23 @@ void Membership::run(){
 	std::cin >> number;
 
 	while(command != "quit" && command == "go"){
-		for (std::vector<Member>::iterator i = allMembers.begin(); i != allMembers.end(); ++i){
-			try{
-				if(i->returnNumber() == number){
-					mark = 1;
-					memberSize = i - allMembers.begin();
-					level = i->returnLevel();
-					i->print();
+		auto i = allMembers.find(number);
+		try{
+			if(i != allMembers.end()){
+				mark = 1;
+				memberSize = i;
+				level = i->second->returnLevel();
+				i->second->print();
 
-					return;
+				return;
 
-				}
-				if(i == allMembers.end() - 1 && mark != 1){
-					throw Myerror("-----Illegal Number.");
-				}
-			}catch(Myerror error){
-				std::cout << "-----Membership error handler-----\n"
-				<< error.what() << "Please try again." << std::endl;
 			}
+			if(i == allMembers.end()){
+				throw Myerror("-----Illegal Number.");
+			}
+		}catch(Myerror error){
+			std::cout << "-----Membership error handler-----\n"
+			<< error.what() << "Please try again." << std::endl;
 		}
 
 		/**
@@ -165,7 +164,7 @@ double Membership::discount(){
 
 void Membership::addPoint(){
 	double point = 0;
-	auto pMember = allMembers.begin() + memberSize;
+	auto pMember = memberSize->second;
 
 	/**
 	 * the user interface.
@@ -219,7 +218,7 @@ void Membership::addPoint(){
  * upgrade the member's level with respect to their point.
  */
 void Membership::upgrade(){
-	auto pMember = allMembers.begin() + memberSize;
+	auto pMember = memberSize->second;
 	int point = pMember->returnPoint();
 
 	if(point > 10000 && point < 50000){

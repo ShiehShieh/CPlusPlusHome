@@ -16,7 +16,7 @@ public:
 private:
 	double bill;
 	Membership membership;
-	template<typename T> void update(std::vector<T> all, std::string file);
+	template<typename T, typename W> void update(std::map<T, W> all, std::string file);
 	//void deduction();
 	bool cash();
 	bool bankCard();

@@ -29,7 +29,7 @@ public:
 	 * return the member size.
 	 * @return [description]
 	 */
-	std::vector<Member>::difference_type returnMemberSize(){
+	std::map<int, Member*>::iterator returnMemberSize(){
 		return memberSize;
 	}
 
@@ -37,7 +37,7 @@ public:
 	 * show the membet information to checkout the update.
 	 */
 	void displayTheMember(){
-		(*(allMembers.begin() + memberSize)).print();
+		memberSize->second->print();
 	}
 
 	~Membership(){}
@@ -45,7 +45,7 @@ public:
 private:
 	int level;
 	double bill;
-	std::vector<Member>::difference_type memberSize = 0;
+	std::map<int, Member*>::iterator memberSize = allMembers.end();
 
 	double discount();
 	void addPoint();

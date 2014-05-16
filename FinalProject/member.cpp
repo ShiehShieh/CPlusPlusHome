@@ -33,7 +33,8 @@ Member::Member(std::ifstream &is){
 	while(inString){
 		inString >> memberShipNumber >> name >> gender >>
 		phone >> level >> memberPoint;
-		allMembers.push_back(Member(memberShipNumber, name, gender, phone, level, memberPoint));
+		auto var = new Member(memberShipNumber, name, gender, phone, level, memberPoint);
+		allMembers.insert(std::make_pair(memberShipNumber, var));
 	}
 }
 

@@ -22,9 +22,10 @@ ShoppingCard::ShoppingCard(std::ifstream& is){
 	double balance;
 	while(inString){
 		inString >> id >> balance;
-		allShoppingCards.push_back(ShoppingCard(id, balance));
+		auto var = new ShoppingCard(id, balance);
+		allShoppingCards.insert(std::make_pair(id, var));
 	}
-	allShoppingCards.pop_back();
+//	allShoppingCards.pop_back();
 }
 
 /**

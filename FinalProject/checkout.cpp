@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <map>
 #include "goods.h"
 #include "membership.h"
 #include "checkout.h"
@@ -91,6 +92,16 @@ int Checkout::run(){
  * Find the correct purchase.
  */
 void Checkout::find(){
+	auto i = allGoods.find(commodity);
+	if (i != allGoods.end()) {
+		int total = i->second->returnBenchmark() * number * i->second->returnDiscount();
+		i->second->print();
+		std::cout << "total: " << total << std::endl;
+		goodsList.push_back(Goods(*((*i).second)));
+		goodsList.back().setCount(number);
+		std::cout << "count: " << number << std::endl;
+	}
+/*
 	for (std::vector<Goods>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)
 	{
 		if (i->returnCom() == commodity)
@@ -103,4 +114,5 @@ void Checkout::find(){
 			std::cout << "count: " << number << std::endl;
 		}
 	}
+*/
 }

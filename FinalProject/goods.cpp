@@ -25,9 +25,10 @@ Goods::Goods(std::ifstream& is):count(1), discount(1){
 	int benchmark;
 	while(inString){
 		inString >> commodity >> name >> origin >> benchmark;
-		allGoods.push_back(Goods(commodity, name, origin, benchmark));
+		auto var = new Goods(commodity, name, origin, benchmark);
+		allGoods.insert(std::make_pair(commodity, var));
 	}
-	allGoods.pop_back();
+//	allGoods.pop_back();
 }
 
 /**

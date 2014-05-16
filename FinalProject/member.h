@@ -11,10 +11,12 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
 #include <sstream>
 
 class Member;
-std::vector<Member> allMembers;
+std::map<int, Member*> allMembers;
+std::vector<Member> allMemberss;
 
 /**
  * represent all the Member in the store.

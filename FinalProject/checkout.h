@@ -31,9 +31,9 @@ private:
  * [dataInput input all the data from particular file which are in the 'sample' doucment.]
  */
 void dataInput(){
-	std::ifstream fisGoods("//Users//huangli//Documents//C++homework//FinalProject//goods.txt");
-	std::ifstream fisMember("//Users//huangli//Documents//C++homework//FinalProject//members.txt");
-	std::ifstream fisShoppingCard("//Users//huangli//Documents//C++homework//FinalProject//shoppingcards.txt");
+	std::ifstream fisGoods("goods.txt");
+	std::ifstream fisMember("members.txt");
+	std::ifstream fisShoppingCard("shoppingcards.txt");
 	Goods goods(fisGoods);
 //	std::cout << allGoods[0] << allGoods[1] << std::endl;
 	Member member(fisMember);

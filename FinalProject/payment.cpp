@@ -152,46 +152,47 @@ bool Payment::shoppingCard(){
 	{
 		i->print();
  	}*/
+
 	/**
 	 * find the shopping card and comfirm the
 	 * balance before settle the account.
 	 */
-	for (std::vector<ShoppingCard>::iterator i = allShoppingCards.begin(); i != allShoppingCards.end(); ++i){
-		try{
-			if(i->returnId() == id){
-				mark = 1;
-				if(i->returnBal() > amount){
-					i->returnBal() -= amount;
-					bill -= amount;
+	auto i = allShoppingCards.find(id);
+	try{
+		if (i != allShoppingCards.end()) {
+			mark = 1;
+			if(i->second->returnBal() > amount){
+				i->second->returnBal() -= amount;
+				bill -= amount;
 
-					/**
-					 * The user interface.
-					 * And the information about remaining bill.
-					 */
-					std::cout << "-----The money remained in the shopping card : "
-					<< i->returnBal() << std::endl;
+				/**
+				 * The user interface.
+				 * And the information about remaining bill.
+				 */
+				std::cout << "-----The money remained in the shopping card : "
+				<< i->second->returnBal() << std::endl;
 
-					std::cout << "-----The money needed : "
-					<< bill << std::endl;
+				std::cout << "-----The money needed : "
+				<< bill << std::endl;
 
-					myStringStream << "-----The money remained in the shopping card : "
-					<< i->returnBal() << std::endl;
+				myStringStream << "-----The money remained in the shopping card : "
+				<< i->second->returnBal() << std::endl;
 
-					myStringStream << "-----The money needed : "<< bill << std::endl;
+				myStringStream << "-----The money needed : "<< bill << std::endl;
 
-				}else{
-					throw Myerror("The balance is not enough.");
-				}
+			}else{
+				throw Myerror("The balance is not enough.");
 			}
-			if(i == allShoppingCards.end() - 1 && mark != 1){
-				throw Myerror("-----Illegal id.");
-			}
-		}catch(Myerror error){
-			std::cout << "\n-----Payment error handler-----\n"
-			<< error.what() << std::endl;
-			myStringStream << "\n-----Payment error handler-----\n"
-			<< error.what() << std::endl;
 		}
+		if(i == allShoppingCards.end()){
+			throw Myerror("-----Illegal id.");
+		}
+
+	}catch(Myerror error){
+		std::cout << "\n-----Payment error handler-----\n"
+		<< error.what() << std::endl;
+		myStringStream << "\n-----Payment error handler-----\n"
+		<< error.what() << std::endl;
 	}
 
 	/**
@@ -308,8 +309,8 @@ void Payment::run(Membership M){
 
 }
 
-template<typename T>
-void Payment::update(std::vector<T> all, std::string file){
+template<typename T, typename W>
+void Payment::update(std::map<T, W> all, std::string file){
 	std::string command;
 	std::cout << "\n-----UPDATE CHECK MODULE-----\n"
 	<< "-----Your data will be changed, please select a mod : \n"
@@ -322,14 +323,14 @@ void Payment::update(std::vector<T> all, std::string file){
 	try{
 		std::cin >> command;
 		if(command == "new"){
-			std::ofstream newFile("//Users//huangli//Documents//C++homework//FinalProject//" + file, std::ios_base::out);
+			std::ofstream newFile(file, std::ios_base::out);
 			for (auto i = all.begin(); i != all.end(); ++i){
-				newFile << *i << std::flush;
+				newFile << *((*i).second) << std::flush;
 			}
 		}else if(command == "ate"){
-			std::ofstream oldFile("//Users//huangli//Documents//C++homework//FinalProject//" + file, std::ios_base::out);
+			std::ofstream oldFile(file, std::ios_base::out);
 			for (auto i = all.begin(); i != all.end(); ++i){
-				oldFile << *i << std::flush;
+				oldFile << *((*i).second) << std::flush;
 			}
 		}else{
 			throw Myerror("-----The command does exit.");
@@ -362,7 +363,7 @@ void Payment::showList(){
 	 * @param  i [description]
 	 * @return   [description]
 	 */
-	std::ofstream of("//Users//huangli//Documents//C++homework//FinalProject//paymentOutput.txt", std::ofstream::out);
+	std::ofstream of("paymentOutput.txt", std::ofstream::out);
 	of << "\n-----SHOPPING LIST-----" << std::endl;
 	for (std::vector<Goods>::iterator i = Checkout::goodsList.begin(); i != Checkout::goodsList.end(); ++i){
 		of << *i << std::flush;

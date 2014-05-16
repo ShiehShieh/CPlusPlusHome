@@ -5,29 +5,8 @@ name: rice
 origin: China
 benchmark: 1000
 count : 100
-commodity code: 5
-name: coffee
-origin: China
-benchmark: 100
-count : 5
 
 -----PAYMENT INFORMATION-----
-
------Payment module-----
-command : 
------Payment approach : cash-----
-The number of cash : -----The money needed : 90500
-
------Payment module-----
-command : 
------Payment approach : bank card-----
-The number of bank card : Comsumer's name : The amount of consumption : The money needed : 40500
-
------Payment module-----
-command : 
------Payment approach : shopping gift card-----
-The id of the shopping gift card : -----the amout of consumption : -----The money remained in the shopping card : 100
------The money needed : 40100
 
 -----Payment module-----
 command : 

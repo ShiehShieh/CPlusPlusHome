@@ -11,10 +11,12 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <map>
 #include <sstream>
 
 class Goods;
-std::vector<Goods> allGoods;
+std::map<int, Goods*> allGoods;
+std::vector<Goods> allGoodss;
 /**
  * Represent all the goods in the supermarket.
  */

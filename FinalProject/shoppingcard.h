@@ -10,13 +10,15 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <sstream>
 
 /**
  * forward declaration
  */
 class ShoppingCard;
-std::vector<ShoppingCard> allShoppingCards;
+std::map<std::string, ShoppingCard*> allShoppingCards;
+std::vector<ShoppingCard> allShoppingCardss;
 
 class ShoppingCard
 {
