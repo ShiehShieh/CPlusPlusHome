@@ -1,13 +1,30 @@
 
 -----SHOPPING LIST-----
-commodity code: 100
-name: rice
-origin: China
-benchmark: 1000
+[;33;1m commodity code: [0m100
+[;33;1m name: [0mrice
+[;33;1m origin: [0mChina
+[;33;1m benchmark: [0m1000
 count : 100
-
 -----PAYMENT INFORMATION-----
 
+-----Payment module-----
+command : 
+-----Payment approach : cash-----
+The number of cash : -----The money needed : 89100
+
+-----Payment module-----
+command : 
+-----Payment approach : bank card-----
+The number of bank card : Comsumer's name : The amount of consumption : The money needed : 89000
+
+-----Payment module-----
+command : 
+-----Payment approach : shopping gift card-----
+The id of the shopping gift card : -----the amout of consumption : -----The money remained in the shopping card : 400
+-----The money needed : 88900
+
+-----Payment module-----
+command : 
 -----Payment module-----
 command : 
 -----Payment approach : cash-----

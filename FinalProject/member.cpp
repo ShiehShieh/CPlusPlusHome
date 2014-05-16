@@ -43,10 +43,10 @@ Member::Member(std::ifstream &is){
  * @param os [description]
  */
 void Member::print(std::ostream &os) const{
-	os << "memberShipNumber : " << memberShipNumber << "\n"
-	<< "name : " << name << "\n"
-	<< "gender : " << gender<< "\n"
-	<< "phone : " << phone << "\n"
-	<< "level : " << level << "\n"
-	<< "memberPoint : " << memberPoint << std::endl;
+	os << "\033[;33;1m memberShipNumber : \033[0m" << memberShipNumber << "\n"
+	<< "\033[;33;1m name : \033[0m" << name << "\n"
+	<< "\033[;33;1m gender : \033[0m" << gender<< "\n"
+	<< "\033[;33;1m phone : \033[0m" << phone << "\n"
+	<< "\033[;33;1m level : \033[0m" << level << "\n"
+	<< "\033[;33;1m memberPoint : \033[0m" << memberPoint << std::endl;
 }

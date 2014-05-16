@@ -18,13 +18,13 @@
 std::vector<Goods> Checkout::goodsList;
 
 int Checkout::interface(std::string &str, std::string &str1, std::string &str2, int status){
-	std::cout << "-----Checkout module.-----\n"
-	<< "command/commodity : " << std::flush;
+	std::cout << "\033[;34;1m -----Checkout module.-----\n\033[0m"
+	<< "\033[;36;1m command/commodity : \033[0m" << std::flush;
 	std::cin >> str1;
 	if (str1 == "quit"){
 		return status;
 	}
-	std::cout << "number : (pass 'p' to skip)" << std::flush;
+	std::cout << "\033[;36;1m number :\033[;31;1m (pass 'p' to skip)\033[0m" << std::flush;
 	std::cin >> str2;
 	if (str2 != "p"){
 		str = str1 + " " + str2;
@@ -96,10 +96,10 @@ void Checkout::find(){
 	if (i != allGoods.end()) {
 		int total = i->second->returnBenchmark() * number * i->second->returnDiscount();
 		i->second->print();
-		std::cout << "total: " << total << std::endl;
+		std::cout << "\033[;34;1m total: \033[0m" << total << std::endl;
 		goodsList.push_back(Goods(*((*i).second)));
 		goodsList.back().setCount(number);
-		std::cout << "count: " << number << std::endl;
+		std::cout << "\033[;34;1m count: \033[0m" << number << std::endl;
 	}
 /*
 	for (std::vector<Goods>::iterator i = allGoods.begin(); i != allGoods.end(); ++i)

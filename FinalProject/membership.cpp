@@ -30,8 +30,8 @@ void Membership::run(){
 	/**
 	 * the user interface.
 	 */
-	std::cout << "\n-----MEMBERSHIP MODULE-----\n"
-	<< "command : " << std::flush;
+	std::cout << "\033[;34;1m \n-----MEMBERSHIP MODULE-----\n\033[0m"
+	<< "\033[;36;1m command : \033[0m" << std::flush;
 	std::cin >> command;
 	if(command == "quit"){
 
@@ -42,7 +42,7 @@ void Membership::run(){
 
 		return;
 	}
-	std::cout << "Please enter your member number : " << std::flush;
+	std::cout << "\033[;36;1m Please enter your member number : \033[0m" << std::flush;
 	std::cin >> number;
 
 	while(command != "quit" && command == "go"){
@@ -58,25 +58,25 @@ void Membership::run(){
 
 			}
 			if(i == allMembers.end()){
-				throw Myerror("-----Illegal Number.");
+				throw Myerror("\033[;31;1m -----Illegal Number.\033[0m");
 			}
 		}catch(Myerror error){
-			std::cout << "-----Membership error handler-----\n"
-			<< error.what() << "Please try again." << std::endl;
+			std::cout << "\033[;34;1m -----Membership error handler-----\n\033[0m"
+			<< error.what() << "\033[;34;1m Please try again.\033[0m" << std::endl;
 		}
 
 		/**
 		 * the user interface.
 		 */
-		std::cout << "-----MEMBERSHIP MODULE-----\n"
-		<< "command : " << std::flush;
+		std::cout << "\033[;34;1m -----MEMBERSHIP MODULE-----\n\033[0m"
+		<< "\033[;36;1m command : \033[0m" << std::flush;
 		std::cin >> command;
 
 		if(command == "quit"){
 			return;
 		}
 
-		std::cout << "Please enter your member number : " << std::flush;
+		std::cout << "\033[;36;1m Please enter your member number : \033[0m" << std::flush;
 		std::cin >> number;
 	}
 
@@ -169,7 +169,7 @@ void Membership::addPoint(){
 	/**
 	 * the user interface.
 	 */
-	std::cout << "-----member point added." << std::endl;
+	std::cout << "\033[;34;1m -----member point added.\033[0m" << std::endl;
 
 	switch(level){
 		case 5:{

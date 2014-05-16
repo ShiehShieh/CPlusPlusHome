@@ -49,8 +49,8 @@ Goods& Goods::operator=(const Goods& other){
  * @param os [description]
  */
 void Goods::print(std::ostream &os) const{
-	os << "commodity code: " << commodity << "\n"
-	<< "name: " << name << "\n"
-	<< "origin: " << origin << "\n"
-	<< "benchmark: " << benchmark << "\n" << "count : "<< count << std::endl;
+	os << "\033[;33;1m commodity code: \033[0m" << commodity << "\n"
+	<< "\033[;33;1m name: \033[0m" << name << "\n"
+	<< "\033[;33;1m origin: \033[0m" << origin << "\n"
+	<< "\033[;33;1m benchmark: \033[0m" << benchmark << "\n" << "count : "<< count << std::endl;
 }
