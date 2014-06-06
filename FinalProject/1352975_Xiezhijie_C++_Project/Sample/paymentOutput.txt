@@ -1,0 +1,21 @@
+
+-----SHOPPING LIST-----
+[;33;1m commodity code: [0m100
+[;33;1m name: [0mrice
+[;33;1m origin: [0mChina
+[;33;1m benchmark: [0m1000
+count : 100
+-----PAYMENT INFORMATION-----
+
+-----Payment module-----
+The money needed to pay:90000
+command : cash
+
+-----Payment approach : cash-----
+The number of cash : 90000
+-----The money needed : 0
+
+-----Payment module-----
+command : cash
+-----Transaction has already been done.
+
